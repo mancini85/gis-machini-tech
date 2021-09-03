@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Report Case</title>
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+</head>
+<body>
+<h2>Report Incident</h2>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Submit Report</button>
+</form>
+
+<script>
+var user_ip =  geoplugin_request()
+console.log(user_ip)
+document.getElementById("reporter_ip").value = user_ip;
+
+   'use strict';
+
+    window.onload = function () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(displayPosition);
+      }
+      else {
+        displayError("Please update your browser to use Geolocation.");
+      }
+    };
+
+    function displayPosition(pos) {
+      document.getElementById("reporter_lat").value = pos.coords.latitude;
+      document.getElementById("reporter_long").value = pos.coords.longitude;
+    }
+
+    function displayError(msg) {
+      let elem = document.getElementById("errorArea");
+      elem.classList.remove("d-none");
+      elem.innerHTML = msg;
+    }
+
+</script>
+</body>
+</html>

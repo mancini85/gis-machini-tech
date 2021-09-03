@@ -1,0 +1,101 @@
+{% load static %} 
+ 
+{% static "images" as baseUrl %}
+
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="connect | share | empower">
+    <meta name="author" content="machini technologies">
+    <link rel="icon" type="image/png" sizes="200x200" href="#">
+
+    <title>{% block title %}Report Incident{% endblock %}</title> 
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'Backend/adminlte/bootstrap/css/bootstrap.min.css' %}">
+    
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'Backend/adminlte/dist/css/AdminLTE.min.css' %}">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'Frontend/assets/css/agency.min.css' %}">
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+   
+    <!-- Scripts -->
+
+ 
+</head>
+<body style="margin-top:5px">
+<div class="container">
+    <div class="row ">
+        <div class="col-md-7 col-md-offset-3">  
+
+           <div class="panel panel-default">
+
+                 <div class="panel-heading text-center"><h4>Report</h4></div>
+
+                <div class="panel-body">
+                     <form  action="" class="login" method="post" data-role="form" >
+                        {% csrf_token %}
+                         <div class="form-group">
+                            {{form.as_p}}
+                         </div>
+                        <br> 
+                        <div class="form-submit-section">
+                              <input class="btn btn-lg btn-success btn-block" type="submit" value="Submit Details">
+                        </div> 
+                            
+                    </form>
+
+                    <br>                    
+            </div>
+        </div>
+                    <hr>
+            <div class="form-group col-md-12">
+               <div class="form-group " align="center">
+                 <div class="row-fluid">
+                        <div class="span12">
+                            <div id="copyright">©  - Machini Technologies . All Rights Reserved</div>
+                        </div><!--span12-->
+                    </div><!--row-fluid-->                       
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+<script>
+var user_ip =  geoplugin_request()
+console.log(user_ip)
+document.getElementById("reporter_ip").value = user_ip;
+
+let userLatitude = geoplugin_latitude()
+let userLongitude = geoplugin_longitude()
+
+document.getElementById('reporter_lat').value = userLatitude;
+document.getElementById('reporter_long').value = userLongitude;
+
+</script>
+ <!-- Scripts -->
+ <script src="{% static 'Frontend/assets/js/app.js' %}"></script>
+
+ <!-- jQuery -->
+ <script src="{% static 'Frontend/assets/jquery/jquery.min.js' %}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'Frontend/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+ 
+  <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
+
+</body>
+</html>    
